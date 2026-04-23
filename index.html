@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📈 BIST Hisse Takip - Canlı Borsa Verileri</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="icon" type="image/x-icon" href="https://cdn-icons-png.flaticon.com/512/3135/3135715.png">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo">
+                <i class="fas fa-chart-line"></i>
+                <h1>BIST Hisse Takip</h1>
+            </div>
+            <div class="last-update">
+                <span id="lastUpdate">Son Güncelleme: --:--:--</span>
+                <button id="refreshBtn" class="refresh-btn">
+                    <i class="fas fa-sync-alt"></i> Yenile
+                </button>
+            </div>
+        </header>
+
+        <!-- Search and Filter -->
+        <div class="controls">
+            <div class="search-box">
+                <i class="fas fa-search"></i>
+                <input type="text" id="searchInput" placeholder="Hisse ara (Örnek: THYAO, GARAN, AKBNK)">
+            </div>
+            <div class="filters">
+                <button class="filter-btn active" data-filter="all">Tümü</button>
+                <button class="filter-btn" data-filter="up">Yükselenler</button>
+                <button class="filter-btn" data-filter="down">Düşenler</button>
+                <button class="filter-btn" data-filter="favorites">Favoriler</button>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Stocks Table -->
+            <div class="stocks-section">
+                <h2><i class="fas fa-table"></i> Canlı Hisse Listesi</h2>
+                <div class="table-container">
+                    <table id="stocksTable">
+                        <thead>
+                            <tr>
+                                <th>Hisse</th>
+                                <th>Fiyat (₺)</th>
+                                <th>Değişim</th>
+                                <th>% Değişim</th>
+                                <th>Hacim</th>
+                                <th>Favori</th>
+                            </tr>
+                        </thead>
+                        <tbody id="stocksTableBody">
+                            <!-- Stocks will be loaded here -->
+                            <tr class="loading-row">
+                                <td colspan="6">
+                                    <div class="loading">
+                                        <i class="fas fa-spinner fa-spin"></i>
+                                        Hisse verileri yükleniyor...
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Charts and Details -->
+            <div class="charts-section">
+                <div class="chart-container">
+                    <h2><i class="fas fa-chart-bar"></i> BIST 100 Endeksi</h2>
+                    <canvas id="mainChart"></canvas>
+                </div>
+                
+                <div class="details-container">
+                    <h2><i class="fas fa-info-circle"></i> Seçili Hisse Detayları</h2>
+                    <div id="stockDetails" class="stock-details">
+                        <div class="no-selection">
+                            <i class="fas fa-hand-pointer"></i>
+                            <p>Detaylarını görmek için bir hisse seçin</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Favorites Section -->
+        <div class="favorites-section">
+            <h2><i class="fas fa-star"></i> Favori Hisse Listem</h2>
+            <div id="favoritesList" class="favorites-list">
+                <div class="empty-favorites">
+                    <i class="far fa-star"></i>
+                    <p>Henüz favori hisseniz yok. Hisse tablosundan yıldıza tıklayarak ekleyin.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-info">
+                <p><i class="fas fa-exclamation-circle"></i> Veriler Yahoo Finance API'den sağlanmaktadır. 30 saniyede bir güncellenir.</p>
+                <p><i class="fas fa-mobile-alt"></i> Mobil uyumlu tasarım - Tüm cihazlarda çalışır</p>
+            </div>
+            <div class="footer-links">
+                <a href="https://github.com/hakanerbasss/borsa-takip" target="_blank">
+                    <i class="fab fa-github"></i> GitHub
+                </a>
+                <a href="https://finance.yahoo.com" target="_blank">
+                    <i class="fas fa-external-link-alt"></i> Yahoo Finance
+                </a>
+                <button id="themeToggle" class="theme-btn">
+                    <i class="fas fa-moon"></i> Tema Değiştir
+                </button>
+            </div>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
